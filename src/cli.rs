@@ -8,7 +8,7 @@ pub(crate) struct Args {
     pub(crate) file: String,
 
     // TODO: Arguments for filtering by attributes
-    #[arg(short, long, value_enum)]
+    #[arg(short, long, value_enum, default_value = "json")]
     pub(crate) output_type: OutputType,
 
     #[arg(short = 'F', long, required_if_eq("output_type", "string"))]
