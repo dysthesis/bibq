@@ -4,7 +4,7 @@ use crate::output::OutputType;
 #[derive(Debug, Parser)]
 #[command(version, about, long_about = None)]
 pub(crate) struct Args {
-    #[arg(short, long)]
+    #[arg(short = 'f', long)]
     pub(crate) file: String,
 
     // TODO: Arguments for filtering by attributes
