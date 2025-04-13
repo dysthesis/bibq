@@ -17,12 +17,15 @@ fn main() {
     let src = read_to_string(args.file).unwrap();
     let biblio = Bibliography::parse(src.as_str()).unwrap();
     let entries: Entries = match args.citekey {
-        Some(key) => match biblio.get(key.as_str()) {
-            Some(res) => vec![res.to_owned()],
-            None => {
-                return eprintln!("Failed to find entry with that citekey");
+        Some(key) => {
+            let key: String = key.split_ascii_whitespace().take(1).collect();
+            match biblio.get(key.as_str()) {
+                Some(res) => vec![res.to_owned()],
+                None => {
+                    return eprintln!("Failed to find entry with that citekey");
+                }
             }
-        },
+        }
         None => biblio.into_vec(),
     };
     let formatted: Vec<String> = match args.output_type {
