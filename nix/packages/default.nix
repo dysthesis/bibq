@@ -5,6 +5,6 @@
   inputs,
   ...
 }: rec {
-  default = mdq;
-  mdq = pkgs.callPackage ./bibq.nix {inherit pkgs inputs lib self;};
+  default = bibq;
+  bibq = pkgs.callPackage ./bibq.nix {inherit pkgs inputs lib self;};
 }
