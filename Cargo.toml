@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+ansi_term = "0.12.1"
 biblatex = { version = "0.10.0", features = ["serde"] }
 clap = { version = "4.5.36", features = ["derive"] }
 rayon = "1.10.0"

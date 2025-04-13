@@ -1,3 +1,4 @@
+use ansi_term::{Colour, Style};
 use biblatex::Entry;
 use regex::Regex;
 
@@ -13,11 +14,17 @@ impl Template {
         re.replace_all(self.0.as_str(), |caps: &regex::Captures<'_>| {
             let key = &caps[1];
             let val: String = match key {
-                "key" => values.key.clone(),
-                "type" => values.entry_type.to_string(),
+                "key" => Colour::Blue.paint(values.key.clone()).to_string(),
+                "type" => Colour::Yellow
+                    .paint(values.entry_type.to_string())
+                    .to_string(),
                 _ => {
                     let out: String = values.get_as(key).to_owned().unwrap_or_default();
-                    out
+                    match key {
+                        "title" => Style::new().bold().paint(out).to_string(),
+                        "author" => Colour::Green.paint(out).to_string(),
+                        _ => out,
+                    }
                 }
             };
             val
