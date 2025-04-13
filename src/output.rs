@@ -1,10 +1,15 @@
 use clap::{Parser, ValueEnum};
-use std::str::FromStr;
 
 #[derive(Debug, Parser, ValueEnum, Clone)]
 pub(crate) enum OutputType {
     Json,
     String,
+}
+
+impl Default for OutputType {
+    fn default() -> Self {
+        Self::Json
+    }
 }
 
 pub(crate) enum Output {
@@ -25,7 +30,9 @@ impl Output {
     }
 
     pub fn format(self: &Self) -> String {
-        // Probably use serde for json
-        todo!()
+        match self {
+            Output::Json => todo!(),
+            Output::String { format } => todo!(),
+        }
     }
 }

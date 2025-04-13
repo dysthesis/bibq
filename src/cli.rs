@@ -8,8 +8,11 @@ pub(crate) struct Args {
     pub(crate) file: String,
 
     // TODO: Arguments for filtering by attributes
-    #[arg(short, long, value_enum, default_value = "json")]
+    #[arg(short = 'o', long, value_enum, default_value_t)]
     pub(crate) output_type: OutputType,
+
+    #[arg(short = 'k', long)]
+    pub(crate) citekey: Option<String>,
 
     #[arg(short = 'F', long, required_if_eq("output_type", "string"))]
     pub(crate) output_format: Option<String>,
