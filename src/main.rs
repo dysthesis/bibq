@@ -1,4 +1,5 @@
 mod cli;
+mod filter;
 mod output;
 
 use std::fs::read_to_string;
@@ -11,5 +12,5 @@ fn main() {
     let args = Args::parse();
     let src = read_to_string(args.file).unwrap();
     let biblio = Bibliography::parse(src.as_str()).unwrap();
-    println!("Bibliography: {:?}", biblio);
+    biblio.iter().for_each(|entry| println!("{:?}\n", entry));
 }
